@@ -1,18 +1,20 @@
 <script>
+import YugiohCard from './components/YugiohCard.vue';
 import axios from 'axios';
 
 export default {
     components: {
-
+        YugiohCard
     },
     data() {
         return {
-            base_url : 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0',
-            cards: []
- 
+            base_url: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0',
+
+            cards: {},
+
         }
     },
-    created() { 
+    created() {
 
         console.log(this, this.base_url);
         /* axios.get returs a promis (una promessa... ti rispondo prima o poi) */
@@ -24,7 +26,7 @@ export default {
                 console.log(response.data); // the whole data response
                 console.log(response.data.response);
 
-                this.cards = response.data.response
+                this.cards = response.data.data;
             })
             .catch(error => {
                 /* Handle a request error */
@@ -39,6 +41,8 @@ export default {
 
 </script>
 
-<template></template>
+<template>
+   <YugiohCard v-for="card in cards" :card_name="card.name" :card_img="card.card_images[0].image_url"></YugiohCard>
+</template>
 
 <style scoped></style>
