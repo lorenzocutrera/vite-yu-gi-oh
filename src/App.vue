@@ -2,19 +2,22 @@
 import axios from 'axios';
 
 export default {
+    components: {
+
+    },
     data() {
         return {
+            base_url : 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0',
             cards: []
-
+ 
         }
     },
-    mounted() {
-        console.log('hi there');
+    created() { 
 
-        console.log(axios);
+        console.log(this, this.base_url);
         /* axios.get returs a promis (una promessa... ti rispondo prima o poi) */
         axios
-            .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
+            .get(this.base_url)
             .then(response => {
                 /* The request response is available in the then method */
                 console.log(response); // the whole response object
@@ -25,8 +28,8 @@ export default {
             })
             .catch(error => {
                 /* Handle a request error */
-                console.log(error);
-                console.log(error.message);
+                console.log('Error:');
+                console.error(error);
                 this.error = error.message
             })
 
