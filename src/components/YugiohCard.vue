@@ -1,21 +1,18 @@
 <script>
 
-export default{
+export default {
     name: 'YugiohCards',
     props: {
         card_name: String,
-        card_img :String,
+        card_img: String,
     }
 }
 
 </script>
 
 <template>
-    
-        {{ card_name }}
-        <img :src="card_img" />
-
-
+    <img :src="card_img" />
+    {{ card_name }}
 </template>
 
 <style scoped></style>
